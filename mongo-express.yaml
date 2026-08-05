@@ -37,3 +37,20 @@ spec:
             configMapKeyRef:
               name: mongodb-configmap
               key: database_url
+---
+
+# External service for app
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: mongo-express-service
+spec:
+  selector:
+    app: mongo-express
+  type: LoadBalancer # makes the service external. ClusterIP is the default which is for internal service
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081 # internal port
+    nodePort: 30000 # makes service external. This is the external port used in browser (should be between 30000 and 32767)
