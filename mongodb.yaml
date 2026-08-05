@@ -33,6 +33,7 @@ spec:
               name: mongodb-secret
               key: mongo-root-password
 ---
+# Internal service for DB
 
 apiVersion: v1
 kind: Service
